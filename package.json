@@ -1,0 +1,26 @@
+{
+  "name": "mern-notes-app",
+  "version": "1.0.0",
+  "description": "A simple MERN stack CRUD and Auth application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "react",
+    "node.js",
+    "express",
+    "mongoDB"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.14"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
