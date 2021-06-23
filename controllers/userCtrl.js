@@ -14,7 +14,7 @@ const registerUser = async (req, res) => {
 				.json({ msg: 'Email already exists.', type: 'error' })
 
 		// 2. Encrypt password
-		const passwordHash = await hash(password, 10)
+		const passwordHash = await bcrypt.hash(password, 10)
 
 		// 3. Create a user in database
 		const newUser = new Users({
@@ -43,7 +43,7 @@ const loginUser = async (req, res) => {
 				.json({ msg: 'User does not exist. 😕', type: 'warning' })
 
 		// 3. Check for password match
-		const isMatch = await compare(password, user.password)
+		const isMatch = await bcrypt.compare(password, user.password)
 		if (!isMatch)
 			return res
 				.status(500)

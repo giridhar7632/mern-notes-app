@@ -8,6 +8,6 @@ router.post('/register', userCtrl.registerUser)
 router.post('/login', userCtrl.loginUser)
 
 // 3) Verify token
-router.post('/verify', userCtrl.verifyUser)
+router.get('/verify', userCtrl.verifyUser)
 
 module.exports = router
