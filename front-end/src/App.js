@@ -1,42 +1,21 @@
-import React from 'react';
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import React, { useState } from 'react' // importing useState hook
+import { ChakraProvider, Flex, theme } from '@chakra-ui/react'
 
-function App() {
+import Notes from './components/Notes'
+import Login from './components/Login'
+
+const App = () => {
+  const [isLogin, setIsLogin] = useState(true) // using state variables
+
   return (
     <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
+      <Flex p={8} h="100vh" flexDirection="column" textAlign="center">
+        <Flex maxW="100%" justifyContent="center" mt={4}>
+          {isLogin ? <Notes /> : <Login setIsLogin={setIsLogin} />}
+        </Flex>
+      </Flex>
     </ChakraProvider>
-  );
+  )
 }
 
-export default App;
+export default App
