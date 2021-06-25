@@ -11,7 +11,7 @@ const Header = ({ setIsLogin }) => {
   }
 
   return (
-    <Flex justifyContent="space-between" w="100%" flexDirection="row">
+    <Flex justifyContent="space-between" w="100%" flexDirection="row" mb={4}>
       <Flex justifyContent="center" alignItems="center" mb={4}>
         <FaEdit size="24px" />
         <Text ml={4} textAlign="center" fontWeight="bold" fontSize="2xl">
@@ -19,9 +19,11 @@ const Header = ({ setIsLogin }) => {
         </Text>
       </Flex>
       <Flex justifyContent="space-between">
-        <Button variant="outline" mx={3} size="md">
-          <Link to="/create">Add Note</Link>
-        </Button>
+        <Link to="/create">
+          <Button variant="outline" mx={3} size="md">
+            Add Note
+          </Button>
+        </Link>
         <Button onClick={logOut} mx={3} variant="solid" size="md">
           Logout
         </Button>

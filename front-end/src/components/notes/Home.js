@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IconButton } from '@chakra-ui/button'
 import {
   Flex,
@@ -10,14 +10,40 @@ import {
   Text,
 } from '@chakra-ui/layout'
 import { format } from 'timeago.js'
+import axios from 'axios'
 import { FaTrashAlt } from 'react-icons/fa'
-import EditNote from './EditNote'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   const [notes, setNotes] = useState([])
+  const [token, setToken] = useState('')
 
-  const deleteNote = id => {
-    console.log('Notes deleted')
+  const getNotes = async token => {
+    const res = await axios.get('api/notes', {
+      headers: { Authorization: token },
+    })
+    setNotes(res.data)
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('userToken')
+    setToken(token)
+    if (token) {
+      getNotes(token)
+    }
+  }, [])
+
+  const deleteNote = async id => {
+    try {
+      if (token) {
+        await axios.delete(`api/notes/${id}`, {
+          headers: { Authorization: token },
+        })
+        getNotes(token)
+      }
+    } catch (error) {
+      window.location.href = '/'
+    }
   }
 
   return (
@@ -66,7 +92,7 @@ const Home = () => {
                   <Text>{format(note.date)}</Text>
                 </HStack>
                 <HStack justifyContent="space-between">
-                  <EditNote noteId={note._id}>Edit</EditNote>
+                  <Link to={`edit/${note._id}`}>Edit</Link>
                   <IconButton
                     onClick={() => deleteNote(note._id)}
                     colorScheme="red"
