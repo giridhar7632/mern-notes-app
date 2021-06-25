@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
+const path = require('path')
 
 // Routes
 const userRouter = require('./routes/userRouter.js')
@@ -33,6 +34,16 @@ app.use('/api/notes', notesRouter)
 app.get('/', (request, response) => {
 	response.send('Hello, World! 👋')
 })
+
+// deploying the application
+
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('front-end/build'))
+
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'front-end', 'build', 'index.html'))
+	})
+}
 
 app.listen(port, () => {
 	console.log(`Server running on port ${port} 🚀`)

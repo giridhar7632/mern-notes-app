@@ -22,7 +22,7 @@ const Login = ({ setIsLogin }) => {
       title: `${text}`,
       status: `${type}`,
       isClosable: true,
-      duration: 30000,
+      duration: 3000,
     })
   }
 
