@@ -25,7 +25,7 @@ const registerUser = async (req, res) => {
 		await newUser.save()
 		res.json({ msg: 'Registered Successfully 🥳', type: 'success' })
 	} catch (error) {
-		return res.status(500).json({ msg: error.message })
+		return res.status(500).json({ msg: error.message, type: 'error' })
 	}
 }
 
@@ -57,7 +57,7 @@ const loginUser = async (req, res) => {
 
 		res.json({ token, msg: 'Sign in Successful ✌', type: 'success' })
 	} catch (error) {
-		return res.status(500).json({ msg: error.message })
+		return res.status(500).json({ msg: error.message, type: 'error' })
 	}
 }
 

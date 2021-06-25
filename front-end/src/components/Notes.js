@@ -7,11 +7,11 @@ import CreateNote from './notes/CreateNote'
 import EditNote from './notes/EditNote'
 import Header from './notes/Header'
 
-const Notes = ({ isLogin }) => {
+const Notes = ({ setIsLogin }) => {
   return (
     <Router>
       <Flex flexDirection="column" alignItems="center" w="100%">
-        <Header isLogin={isLogin} />
+        <Header setIsLogin={setIsLogin} />
         <Route path="/" component={Home} exact />
         <Route path="/create" component={CreateNote} exact />
         <Route path="/edit/:id" component={EditNote} exact />
