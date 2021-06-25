@@ -6,7 +6,8 @@ import { ColorModeSwitcher } from '../../ColorModeSwitcher'
 
 const Header = ({ setIsLogin }) => {
   const logOut = () => {
-    console.log('Logged out')
+    localStorage.clear()
+    setIsLogin(false)
   }
 
   return (
